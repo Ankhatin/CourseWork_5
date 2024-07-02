@@ -1,5 +1,4 @@
 import psycopg2
-from decimal import Decimal
 
 
 class DBManager:
