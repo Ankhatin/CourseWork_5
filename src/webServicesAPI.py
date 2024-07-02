@@ -11,7 +11,7 @@ class Parser(ABC):
 
 class HeadHunterAPI(Parser):
     '''
-    Класс для работы с вакансиями, загруженными с платформы hh.ru
+    Класс для работы с работодателями и вакансиями, загруженными с платформы hh.ru
     '''
     def __init__(self, url):
         self.url = url
@@ -21,13 +21,14 @@ class HeadHunterAPI(Parser):
     def load_data(self, keyword=None, per_page=10):
         '''
         Функция отправляет запрос на платформу hh.ru,
-        загружает данные и возращает в виде список словарей
+        загружает данные и возращает в виде списка словарей
         '''
         employers_list: list[dict] = []
         self.params['text'] = keyword
         self.params['per_page'] = per_page
         response = requests.get(self.url, headers=self.headers, params=self.params)
         if response.status_code == 200:
-            return response.json()['items']
+            employers_list = response.json()['items']
+            return employers_list
 
 

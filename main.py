@@ -15,7 +15,7 @@ def user_interaction():
     else:
         search_query = ['яндекс', 'ozon', 'vk', 'сбер', 'банк втб (пао)', 'т-банк',
                         'авито', 'wildberries', 'мтс', 'мегафон']
-    employers, vacancies = load_data_from_hh(search_query)
+    employers, vacancies = get_data_from_hh(search_query)
     db_manager.write_data(employers, vacancies)
     companies = db_manager.get_companies_and_vacancies_count()
     if input("Вывести список компаний с количеством вакансий в каждой компании, да или Enter, чтобы пропустить: "):
